@@ -4,7 +4,7 @@
 
 This lab was built to simulate a small SOC-style endpoint detection workflow using Sysmon telemetry, Splunk Universal Forwarder, and Splunk Enterprise.
 
-A Windows host generated Sysmon events, the Splunk Universal Forwarder collected those events from the Sysmon Operational log, and Splunk Enterprise ingested and indexed the telemetry for detection and alerting.
+A Windows host generated Sysmon telemetry, the Splunk Universal Forwarder collected those events from the Sysmon Operational log, and Splunk Enterprise ingested and indexed the data for detection and alerting.
 
 ## Components
 
