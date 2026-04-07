@@ -92,7 +92,7 @@ Validation included:
 - generating fresh test activity to trigger those alerts
 - reviewing triggered alerts and matching event details in Splunk
 
-This moved the project beyond simple log ingestion and into detection engineering + alert validation + basic triage.
+This moved the project beyond simple log ingestion into detection engineering, alert validation, and basic triage.
 
 ## Triage Notes
 
