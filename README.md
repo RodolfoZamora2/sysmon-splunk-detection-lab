@@ -16,6 +16,7 @@ A controlled test was executed with:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "whoami"
+```
 
 This validated that Splunk could detect PowerShell executions using bypass-style arguments often associated with attacker tradecraft.
 
@@ -24,9 +25,9 @@ This validated that Splunk could detect PowerShell executions using bypass-style
 This detection looks for PowerShell executions using -EncodedCommand, which is commonly used to obfuscate command-line activity.
 
 A controlled test was executed with:
-
+```powershell
 powershell.exe -NoProfile -EncodedCommand VwBoAG8AYQBtAGkA
-
+```
 This validated that Splunk could detect encoded PowerShell command execution from Sysmon process creation events.
 
 ### 3. Hidden PowerShell Detection
@@ -34,9 +35,9 @@ This validated that Splunk could detect encoded PowerShell command execution fro
 This detection looks for PowerShell launched with hidden window arguments, which can indicate stealthy execution.
 
 A controlled test was executed with:
-
+```powershell
 powershell.exe -WindowStyle Hidden -Command "whoami"
-
+```
 This validated detection of PowerShell launched in a less visible way from the user’s perspective.
 
 ### 4. Registry Persistence Run Key Detection
@@ -47,8 +48,9 @@ HKCU\Software\Microsoft\Windows\CurrentVersion\Run
 
 A controlled test was executed with:
 
+```powershell
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v UpdaterTest /t REG_SZ /d "C:\Windows\System32\notepad.exe" /f
-
+```
 This validated that Splunk could detect suspicious persistence-related registry activity from Sysmon telemetry.
 
 ## Alerting Workflow
@@ -81,14 +83,14 @@ The lab was validated end to end through controlled attack simulation and alert 
 
 Validation included:
 
-confirming Sysmon was installed and generating events on the Windows host
-confirming Sysmon Operational logs were visible in Event Viewer
-forwarding Sysmon logs into Splunk through the Splunk Universal Forwarder
-confirming Sysmon events appeared in Splunk with the expected source and sourcetype
-building detections for suspicious PowerShell activity and registry persistence
-converting detections into Splunk alerts
-generating fresh test activity to trigger those alerts
-reviewing triggered alerts and matching event details in Splunk
+- confirming Sysmon was installed and generating events on the Windows host
+- confirming Sysmon Operational logs were visible in Event Viewer
+- forwarding Sysmon logs into Splunk through the Splunk Universal Forwarder
+- confirming Sysmon events appeared in Splunk with the expected source and sourcetype
+- building detections for suspicious PowerShell activity and registry persistence
+- converting detections into Splunk alerts
+- generating fresh test activity to trigger those alerts
+- reviewing triggered alerts and matching event details in Splunk
 
 This moved the project beyond simple log ingestion and into detection engineering + alert validation + basic triage.
 
@@ -96,22 +98,22 @@ This moved the project beyond simple log ingestion and into detection engineerin
 
 For each validated alert, matching event details were reviewed in Splunk to inspect:
 
--event time
--host
--user context
--source and sourcetype
--command line
--parent process
--suspicious arguments or persistence-related artifacts
+- event time
+- host
+- user context
+- source and sourcetype
+- command line
+- parent process
+- suspicious arguments or persistence-related artifacts
 
 This helped demonstrate that detections were not only firing, but were also producing enough context for a junior SOC analyst to begin triage.
 
 ## Cleanup
 
 After testing registry persistence behavior, the test Run key value was removed with:
-
+```powershell
 reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v UpdaterTest /f
-
+```
 This ensured the environment was cleaned up after validation.
 
 ## Screenshots
