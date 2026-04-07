@@ -1,4 +1,4 @@
-## Detection Use Cases
+## Detection Coverage
 
 This lab was expanded from a basic Splunk log-ingestion setup into a small SOC-style detection and alerting workflow using **Sysmon telemetry** forwarded from a Windows host into **Splunk Enterprise**.
 
