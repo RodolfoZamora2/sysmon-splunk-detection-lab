@@ -17,7 +17,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "whoami"
 ```
 This validated that Splunk could detect PowerShell executions using bypass-style arguments often associated with attacker tradecraft.
 
-2. EncodedCommand PowerShell Detection
+```md
+### 2. EncodedCommand PowerShell Detection
 
 This detection looks for PowerShell executions using -EncodedCommand, which is commonly used to obfuscate command-line activity.
 
@@ -27,7 +28,7 @@ powershell.exe -NoProfile -EncodedCommand VwBoAG8AYQBtAGkA
 ```
 This validated that Splunk could detect encoded PowerShell command execution from Sysmon process creation events.
 
-3. Hidden PowerShell Detection
+### 3. Hidden PowerShell Detection
 
 This detection looks for PowerShell launched with hidden window arguments, which can indicate stealthy execution.
 
@@ -37,7 +38,7 @@ powershell.exe -WindowStyle Hidden -Command "whoami"
 ```
 This validated detection of PowerShell launched in a less visible way from the user’s perspective.
 
-4. Registry Persistence Run Key Detection
+### 4. Registry Persistence Run Key Detection
 
 This detection looks for registry modifications associated with Run key persistence, specifically under:
 
@@ -110,7 +111,7 @@ After testing registry persistence behavior, the test Run key value was removed 
 reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v UpdaterTest /f
 ```
 This ensured the environment was cleaned up after validation.
-
+```
 Screenshots
 
 The screenshots below document the project from setup through detection, alerting, validation, and cleanup.
