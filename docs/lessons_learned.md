@@ -33,4 +33,4 @@ This lab helped reinforce practical skills in:
 
 ## Conclusion
 
-This project expanded a basic Splunk ingestion lab into a more realistic SOC-style workflow by combining endpoint telemetry, behavioral detections, alerting, validation, and triage. It was a strong step forward from simple log collection into actual defensive monitoring.
+This project expanded a basic Splunk log ingestion setup into a more realistic Sysmon-based SOC-style workflow by combining endpoint telemetry, behavioral detections, alerting, validation, and triage. It was a strong step forward from simple log collection into actual defensive monitoring.
